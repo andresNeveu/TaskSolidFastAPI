@@ -1,4 +1,4 @@
-from datatime import datatime
+from datetime import datetime
 
 import peewee
 
@@ -7,8 +7,8 @@ from .user_model import User
 
 
 class Todo(peewee.Model):
-    title = peewee.Charfield()
-    create_at = peewee.DateTimeField(default=datatime.now)
+    title = peewee.CharField()
+    create_at = peewee.DateTimeField(default=datetime.now)
     is_done = peewee.BooleanField(default=False)
     user = peewee.ForeignKeyField(User, backref="todos")
 
