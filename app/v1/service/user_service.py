@@ -8,14 +8,15 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
 def get_password_hash(password):
-    ''' Password into crypto
+    """
+    ##Password into crypto
 
-    Parameters:
-    password (str): a string that is a password
+    ###Parameters:
+    - password (str): a string that is a password
 
-    Returns:
-    str: String into crypto string
-    '''
+    ###Returns:
+    - str: String into crypto string
+    """
     return pwd_context.hash(password)
 
 
