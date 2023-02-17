@@ -32,7 +32,8 @@ def get_password_hash(password):
 
 
 def get_user(username: str):
-    return UserModel.filter((UserModel.email == username) | (UserModel.username == username)).first()
+    return UserModel.filter((UserModel.email == username) |
+                            (UserModel.username == username)).first()
 
 
 def authenticate_user(username: str, password: str):
