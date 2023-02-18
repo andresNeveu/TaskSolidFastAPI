@@ -4,7 +4,7 @@ const TaskRoutes = () => {
 	return (
 		<>
 			<Routes>
-				<Route path={'/'} component={<Home />} />
+				<Route path={'*'} component={<Home id='2' />} />
 			</Routes>
 		</>
 	);
