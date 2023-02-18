@@ -86,3 +86,23 @@ def un_mark_task_done(
     current_user: User = Depends(get_current_user)
 ):
     return todo_service.update_status_task(False, task_id, current_user)
+
+
+@router.delete(
+    "/{task_id}/",
+    tags=["to-do"],
+    status_code=status.HTTP_200_OK,
+    dependencies=[Depends(get_db)]
+)
+def delete_task(
+    task_id: int = Path(
+        ...,
+        gt=0
+    ),
+    current_user: User = Depends(get_current_user)
+):
+    todo_service.delete_task(task_id, current_user)
+
+    return {
+        'msg': 'Task has been deleted successfully'
+    }
