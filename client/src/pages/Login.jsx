@@ -1,22 +1,22 @@
-import { createMemo, createSignal } from 'solid-js';
+import { createSignal } from 'solid-js';
 import { validateEmail, validatePassword } from '../utils/validate';
 import styles from './styles/Login.module.css';
 
 const Login = () => {
 	const [data, setData] = createSignal({ email: '', pass: '' });
 
-	const checkPassword = createMemo(() => {
+	const checkPassword = () => {
 		if (validatePassword(data().pass) || data().pass.length === 0) {
 			return styles.input;
 		}
 		return styles.inputError;
-	});
-	const checkEmail = createMemo(() => {
+	};
+	const checkEmail = () => {
 		if (validateEmail(data().email) || data().email.length === 0) {
 			return styles.input;
 		}
 		return styles.inputError;
-	});
+	};
 
 	const handleChange = (event) => {
 		const { name, value } = event.target;
