@@ -1,17 +1,25 @@
 import { Route, Routes } from '@solidjs/router';
+import { RouteGuard } from '../components/tools/RouteGuard';
+import Home from '../pages/Home';
+import Login from '../pages/Login';
 
 const TaskRoutes = () => {
 	return (
 		<>
 			<Routes>
-				<Route path={'*'} component={<Home id='2' />} />
+				<Route path={'/'} component={Home} />
+				<Route
+					path={'*'}
+					component={
+						<RouteGuard>
+							<Home />
+						</RouteGuard>
+					}
+				/>
+				<Route path={'/login'} component={Login} />
 			</Routes>
 		</>
 	);
-};
-
-const Home = () => {
-	return <div>Hello World</div>;
 };
 
 export default TaskRoutes;
