@@ -24,12 +24,16 @@ const Login = () => {
 			...data(),
 			[name]: value,
 		});
-		console.log(value);
+	};
+
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		console.log(data());
 	};
 
 	return (
 		<>
-			<div class={styles.container}>
+			<div class={styles.container} onsubmit={handleSubmit}>
 				<form class={styles.form}>
 					<div>
 						<label for='email'>Correo:</label>
