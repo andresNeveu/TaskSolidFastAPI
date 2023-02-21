@@ -2,21 +2,22 @@ import { Route, Routes } from '@solidjs/router';
 import { RouteGuard } from '../components/tools/RouteGuard';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
+import Tasks from '../pages/Tasks';
 
 const TaskRoutes = () => {
 	return (
 		<>
 			<Routes>
-				<Route path={'/home'} component={Home} />
+				<Route path={'/login'} component={<Login />} />
+				<Route path={['/home', '/']} component={<Home />} />
 				<Route
-					path={'*'}
+					path={'/tasks'}
 					component={
 						<RouteGuard>
-							<Home />
+							<Tasks />
 						</RouteGuard>
 					}
 				/>
-				<Route path={'/login'} component={Login} />
 			</Routes>
 		</>
 	);

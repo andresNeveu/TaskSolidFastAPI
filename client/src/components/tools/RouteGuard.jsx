@@ -1,11 +1,12 @@
-import { Navigate, useNavigate } from '@solidjs/router';
+import { Show } from 'solid-js';
 import { useAuth } from '../../hooks/useAuth';
+import Login from '../../pages/Login';
 
 export const RouteGuard = (props) => {
-	const navigate = useNavigate();
 	const { token } = useAuth();
-	if (token()) {
-		return props.children;
-	}
-	return navigate('/home');
+	return (
+		<Show when={token()} fallback={<Login />}>
+			{props.children}
+		</Show>
+	);
 };
