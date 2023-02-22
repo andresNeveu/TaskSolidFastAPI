@@ -1,4 +1,4 @@
-const host = import.meta.env.VITE_HOST || 'http://localhost:8080/';
+const host = import.meta.env.VITE_HOST || 'http://localhost:8000/';
 
 /**
  * Request to login
@@ -6,13 +6,14 @@ const host = import.meta.env.VITE_HOST || 'http://localhost:8080/';
  * @returns jwt {String}
  */
 const loginService = async (data) => {
-	const route = `${host}login/`;
+	const route = `${host}api/v1/login/`;
 	return await fetch(route, {
 		method: 'POST',
 		headers: {
-			'Content-Type': 'application/json',
+			'Content-Type': 'application/x-www-form-urlencoded',
+			accept: 'application/json',
 		},
-		body: JSON.stringify(data),
+		body: data,
 	}).then((res) => res);
 };
 
