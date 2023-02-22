@@ -1,18 +1,25 @@
 import { createSignal } from 'solid-js';
+import { useAuth } from '../hooks/useAuth';
+import loginService from '../services/login.service';
 import { validateEmail, validatePassword } from '../utils/validate';
 import styles from './styles/Login.module.css';
 
+const toForm = (data) => {
+	return `username=${data.username}&password=${data.password}&scope=&client_id=&client_secret=`;
+};
+
 const Login = () => {
-	const [data, setData] = createSignal({ email: '', pass: '' });
+	const [data, setData] = createSignal({ username: '', password: '' });
+	const { login } = useAuth();
 
 	const checkPassword = () => {
-		if (validatePassword(data().pass) || data().pass.length === 0) {
+		if (validatePassword(data().password) || data().password.length === 0) {
 			return styles.input;
 		}
 		return styles.inputError;
 	};
 	const checkEmail = () => {
-		if (validateEmail(data().email) || data().email.length === 0) {
+		if (validateEmail(data().username) || data().username.length === 0) {
 			return styles.input;
 		}
 		return styles.inputError;
@@ -26,9 +33,16 @@ const Login = () => {
 		});
 	};
 
-	const handleSubmit = (event) => {
+	const handleSubmit = async (event) => {
 		event.preventDefault();
-		console.log(data());
+		const dataForm = toForm(data());
+		console.log(dataForm);
+		const res = await loginService(dataForm);
+		if (res) {
+			const token = await res.json();
+			login(token);
+			console.log(token);
+		}
 	};
 
 	return (
@@ -39,12 +53,13 @@ const Login = () => {
 						<label for='email'>Correo:</label>
 						<br />
 						<input
-							onkeydown={handleChange}
+							onInput={handleChange}
 							class={checkEmail()}
 							type='text'
-							name='email'
+							name='username'
 							id='email'
 							placeholder='Tu Correo'
+							required
 						/>
 						<br />
 					</div>
@@ -52,12 +67,13 @@ const Login = () => {
 						<label for='pass'>Contraseña: </label>
 						<br />
 						<input
-							onkeydown={handleChange}
+							onInput={handleChange}
 							class={checkPassword()}
 							type='password'
-							name='pass'
+							name='password'
 							id='pass'
 							placeholder='Tu Contraseña'
+							required
 						/>
 						<br />
 					</div>
