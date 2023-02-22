@@ -8,8 +8,8 @@ const TaskRoutes = () => {
 	return (
 		<>
 			<Routes>
-				<Route path={'/login'} component={<Login />} />
-				<Route path={['/home', '/']} component={<Home />} />
+				<Route path={'/login'} component={Login} />
+				<Route path={['/home', '/']} component={Home} />
 				<Route
 					path={'/tasks'}
 					component={
