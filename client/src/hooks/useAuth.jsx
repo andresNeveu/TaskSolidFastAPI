@@ -11,7 +11,7 @@ export const AuthProvider = (props) => {
 	/**
 	 * delete token save in local storage
 	 */
-	const logout = () => {
+	const logOut = () => {
 		setToken(null);
 		navigate('/', { replace: true });
 	};
@@ -20,12 +20,12 @@ export const AuthProvider = (props) => {
 	 * save token in local storage
 	 * @param {string} key
 	 */
-	const login = (key) => {
+	const logIn = (key) => {
 		setToken(key);
-		navigate('/home', { replace: true });
+		navigate('/');
 	};
 
-	const value = { token, login, logout };
+	const value = { token, logIn, logOut };
 	return (
 		<>
 			<AuthContext.Provider value={value}>{props.children}</AuthContext.Provider>

@@ -1,6 +1,6 @@
 import { createSignal } from 'solid-js';
 import { useAuth } from '../hooks/useAuth';
-import loginService from '../services/login.service';
+import logInService from '../services/logIn.service';
 import { validateEmail, validatePassword } from '../utils/validate';
 import styles from './styles/Login.module.css';
 
@@ -8,9 +8,9 @@ const toForm = (data) => {
 	return `username=${data.username}&password=${data.password}&scope=&client_id=&client_secret=`;
 };
 
-const Login = () => {
+const LogIn = () => {
 	const [data, setData] = createSignal({ username: '', password: '' });
-	const { login } = useAuth();
+	const { logIn } = useAuth();
 
 	const checkPassword = () => {
 		if (validatePassword(data().password) || data().password.length === 0) {
@@ -36,12 +36,10 @@ const Login = () => {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		const dataForm = toForm(data());
-		console.log(dataForm);
-		const res = await loginService(dataForm);
+		const res = await logInService(dataForm);
 		if (res) {
 			const token = await res.json();
-			login(token);
-			console.log(token);
+			logIn(token);
 		}
 	};
 
@@ -88,4 +86,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default LogIn;

@@ -5,7 +5,7 @@ const host = import.meta.env.VITE_HOST || 'http://localhost:8000/';
  * @param {JSON} data email, password
  * @returns jwt {String}
  */
-const loginService = async (data) => {
+const logInService = async (data) => {
 	const route = `${host}api/v1/login/`;
 	return await fetch(route, {
 		method: 'POST',
@@ -17,4 +17,4 @@ const loginService = async (data) => {
 	}).then((res) => res);
 };
 
-export default loginService;
+export default logInService;

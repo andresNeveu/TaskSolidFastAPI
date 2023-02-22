@@ -1,9 +1,9 @@
-import LoginButton from '../components/button/LoginButton';
+import LogInButton from '../components/button/LogInButton';
 
 const Home = () => {
 	return (
 		<div>
-			<LoginButton />
+			<LogInButton />
 			Hello World
 		</div>
 	);
