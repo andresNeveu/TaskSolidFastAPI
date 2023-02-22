@@ -1,11 +1,11 @@
 import { AuthProvider } from './hooks/useAuth';
-import TaskRoutes from './routes/TaskRoutes';
+import AppRoutes from './routes/AppRoutes';
 
 export const App = () => {
 	return (
 		<>
 			<AuthProvider>
-				<TaskRoutes />
+				<AppRoutes />
 			</AuthProvider>
 		</>
 	);
