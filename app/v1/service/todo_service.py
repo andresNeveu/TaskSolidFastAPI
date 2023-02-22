@@ -18,7 +18,7 @@ def create_task(task: todo_schema.TodoCreate, user: user_schema.User):
         id=db_task.id,
         title=db_task.title,
         is_done=db_task.is_done,
-        created_at=db_task.created_at
+        create_at=db_task.create_at
     )
 
 
@@ -26,10 +26,10 @@ def get_tasks(user: user_schema.User, is_done: bool = None):
 
     if (is_done is None):
         tasks_by_user = TodoModel.filter(
-            TodoModel.user_id == user.id).order_by(TodoModel.created_at.desc())
+            TodoModel.user_id == user.id).order_by(TodoModel.create_at.desc())
     else:
         tasks_by_user = TodoModel.filter((TodoModel.user_id == user.id) & (
-            TodoModel.is_done == is_done)).order_by(TodoModel.created_at.desc())
+            TodoModel.is_done == is_done)).order_by(TodoModel.create_at.desc())
 
     list_tasks = []
     for task in tasks_by_user:
@@ -38,7 +38,7 @@ def get_tasks(user: user_schema.User, is_done: bool = None):
                 id=task.id,
                 title=task.title,
                 is_done=task.is_done,
-                created_at=task.created_at
+                create_at=task.create_at
             )
         )
 
@@ -59,7 +59,7 @@ def get_task(task_id: int, user: user_schema.User):
         id=task.id,
         title=task.title,
         is_done=task.is_done,
-        created_at=task.created_at
+        create_at=task.create_at
     )
 
 
@@ -80,7 +80,7 @@ def update_status_task(is_done: bool, task_id: int, user: user_schema.User):
         id=task.id,
         title=task.title,
         is_done=task.is_done,
-        created_at=task.created_at
+        create_at=task.create_at
     )
 
 
