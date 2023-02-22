@@ -9,12 +9,14 @@ const LoginButton = () => {
 	const textButton = token() ? 'Entrar' : 'Inicia sesión';
 
 	const handleClick = (event) => {
-		const route = token() ? '/' : '/login';
+		const route = token() ? '/home' : '/login';
 		navigate(route);
 	};
 	return (
-		<div onclick={handleClick} class={styles.containerLoginButton}>
-			<button class={styles.loginButton}>{textButton}</button>
+		<div class={styles.containerLoginButton}>
+			<button onclick={handleClick} class={styles.loginButton}>
+				{textButton}
+			</button>
 		</div>
 	);
 };
