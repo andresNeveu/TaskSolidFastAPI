@@ -4,10 +4,6 @@ import logInService from '../services/logIn.service';
 import { validateEmail, validatePassword } from '../utils/validate';
 import styles from './styles/Login.module.css';
 
-const toForm = (data) => {
-	return `username=${data.username}&password=${data.password}&scope=&client_id=&client_secret=`;
-};
-
 const LogIn = () => {
 	const [data, setData] = createSignal({ username: '', password: '' });
 	const { logIn } = useAuth();
@@ -35,8 +31,7 @@ const LogIn = () => {
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-		const dataForm = toForm(data());
-		const res = await logInService(dataForm);
+		const res = await logInService(data());
 		if (res) {
 			const token = await res.json();
 			logIn(token);
