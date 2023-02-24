@@ -8,11 +8,11 @@ const AppRoutes = () => {
 	return (
 		<>
 			<Routes>
-				<Route path={'/login'} component={LogIn} />
-				<Route path={'/home'} component={Home} />
+				<Route path={'/login'} element={<LogIn />} />
+				<Route path={'/home'} element={<Home />} />
 				<Route
-					path={'/'}
-					component={
+					path={'*'}
+					element={
 						<RouteGuard>
 							<Tasks />
 						</RouteGuard>
