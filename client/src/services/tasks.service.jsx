@@ -21,3 +21,39 @@ export const getAllTasks = async (token, params = '') => {
 		console.log(error);
 	}
 };
+
+export const markTask = async (token, params) => {
+	const route = `${host}api/v1/to-do/${params}/mark_done`;
+	const authorization = toAuthorization(token);
+	try {
+		const res = await fetch(route, {
+			method: 'PATCH',
+			headers: {
+				'Content-Type': 'application/json',
+				accept: 'application/json',
+				Authorization: authorization,
+			},
+		});
+		return res;
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const unMarkTask = async (token, params) => {
+	const route = `${host}api/v1/to-do/${params}/un_mark_done`;
+	const authorization = toAuthorization(token);
+	try {
+		const res = await fetch(route, {
+			method: 'PATCH',
+			headers: {
+				'Content-Type': 'application/json',
+				accept: 'application/json',
+				Authorization: authorization,
+			},
+		});
+		return res;
+	} catch (error) {
+		console.log(error);
+	}
+};
