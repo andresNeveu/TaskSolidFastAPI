@@ -4,6 +4,25 @@ const toAuthorization = (token) => {
 	return `${token.token_type} ${token.access_token}`;
 };
 
+export const createTask = async (token, data) => {
+	const route = `${host}api/v1/to-do/`;
+	const authorization = toAuthorization(token);
+	try {
+		const res = await fetch(route, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				accept: 'application/json',
+				Authorization: authorization,
+			},
+			body: data,
+		});
+		return res;
+	} catch (error) {
+		console.log(error);
+	}
+};
+
 export const getAllTasks = async (token, params = '') => {
 	const route = `${host}api/v1/to-do/${params}`;
 	const authorization = toAuthorization(token);
@@ -46,6 +65,24 @@ export const unMarkTask = async (token, params) => {
 	try {
 		const res = await fetch(route, {
 			method: 'PATCH',
+			headers: {
+				'Content-Type': 'application/json',
+				accept: 'application/json',
+				Authorization: authorization,
+			},
+		});
+		return res;
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const deleteTask = async (token, params) => {
+	const route = `${host}api/v1/to-do/${params}`;
+	const authorization = toAuthorization(token);
+	try {
+		const res = await fetch(route, {
+			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json',
 				accept: 'application/json',
