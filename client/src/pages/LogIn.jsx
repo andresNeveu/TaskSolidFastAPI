@@ -32,7 +32,7 @@ const LogIn = () => {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		const res = await logInService(data());
-		if (res) {
+		if (res.status === 200) {
 			const token = await res.json();
 			logIn(token);
 		}
