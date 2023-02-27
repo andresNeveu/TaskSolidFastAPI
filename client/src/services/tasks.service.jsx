@@ -78,7 +78,7 @@ export const unMarkTask = async (token, params) => {
 };
 
 export const deleteTask = async (token, params) => {
-	const route = `${host}api/v1/to-do/${params}`;
+	const route = `${host}api/v1/to-do/${params}/`;
 	const authorization = toAuthorization(token);
 	try {
 		const res = await fetch(route, {

@@ -12,15 +12,13 @@ const ListTasks = () => {
 	};
 	const [tasks, { mutate, refetch }] = createResource(fetchTasks);
 
-	const handleClick = (e) => {
-		mutate([...tasks(), { title: 'Create tasks list', id: 7, is_done: false, created_at: '2023-02-22T' }]);
-		console.log(tasks());
+	const deleteTask = (i) => {
+		mutate(tasks().filter((elem, index) => index !== i));
 	};
 	return (
 		<>
 			<h3 style={{ margin: '0.5rem' }}>Things To Do</h3>
-			<For each={tasks()}>{(task, i) => <TaskCard task={task} id={i()} />}</For>
-			<button onclick={handleClick}>boton</button>
+			<For each={tasks()}>{(task, i) => <TaskCard task={task} id={i()} delete={deleteTask} />}</For>
 		</>
 	);
 };
