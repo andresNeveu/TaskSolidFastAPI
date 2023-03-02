@@ -23,7 +23,7 @@ export const createTask = async (token, data) => {
 	}
 };
 
-export const getAllTasks = async (token, params = '') => {
+export const getTasks = async (token, params = '') => {
 	const route = `${host}api/v1/to-do/${params}`;
 	const authorization = toAuthorization(token);
 	try {

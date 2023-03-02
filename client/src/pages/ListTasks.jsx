@@ -1,5 +1,5 @@
 import { createResource, createSignal, For } from 'solid-js';
-import { getAllTasks } from '../services/tasks.service';
+import { getTasks } from '../services/tasks.service';
 import { useAuth } from '../hooks/useAuth';
 import TaskCard from '../components/card/TaskCard';
 import NewTaskDialog from '../components/dialog/NewTaskDialog';
@@ -10,7 +10,7 @@ const ListTasks = () => {
 	const [openDialog, setOpenDialog] = createSignal(false);
 
 	const fetchTasks = async () => {
-		const tasks = await getAllTasks(token());
+		const tasks = await getTasks(token());
 		const resData = await tasks.json();
 		return resData;
 	};
