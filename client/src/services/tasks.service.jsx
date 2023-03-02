@@ -15,7 +15,7 @@ export const createTask = async (token, data) => {
 				accept: 'application/json',
 				Authorization: authorization,
 			},
-			body: data,
+			body: JSON.stringify(data),
 		});
 		return res;
 	} catch (error) {
